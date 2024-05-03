@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTable-posts
+      author: dmitri4skroba
+      failOnError: true
+      changes:
+        - createTable:
+            tableName: subscriptions
+            columns:
+              - column:
+                  name: id
+                  type: ${id}
+                  autoIncrement: true
+                  generationType: ALWAYS
+                  incrementBy: 1
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: authorId
+                  type: ${id}
+                  constraints:
+                    nullable: false
+                    referencedTableSchemaName: auth
+                    referencedTableName: users
+                    foreignKeyName: id
+              - column:
+                  name: subscriberId
+                  type: ${id}
+                  constraints:
+                    nullable: false
+                    referencedTableSchemaName: auth
+                    referencedTableName: users
+                    foreignKeyName: id

@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTable-posts
+      author: dmitri4skroba
+      failOnError: true
+      changes:
+        - createTable:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  type: ${id}
+                  autoIncrement: true
+                  generationType: ALWAYS
+                  incrementBy: 1
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: title
+                  type: ${label}
+                  constraints:
+                    nullable: false
+              - column:
+                  name: content
+                  type: ${text}
+                  constraints:
+                    nullable: false
+              - column:
+                  name: authorId
+                  type: ${id}
+                  constraints:
+                    nullable: false
+                    referencedTableSchemaName: auth
+                    referencedTableName: users
+                    foreignKeyName: id
+              - column:
+                  name: time
+                  type: ${date}
+                  constraints:
+                    nullable: false
